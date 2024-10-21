@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #e3f2fd; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .password-container { position: relative; }
+        .toggle-password { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; }
+        button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container" id="signup-container">
+        <h2>Sign Up</h2>
+        <input type="text" id="signup-username" placeholder="Username" required><br>
+        <input type="email" id="signup-email" placeholder="Email" required><br>
+        <div class="password-container">
+            <input type="password" id="signup-password" placeholder="Password" required>
+            <span class="toggle-password" onclick="togglePassword('signup-password')">&#128065;</span>
+        </div>
+        <button onclick="signup()">Sign Up</button>
+    </div>
+
+    <script>
+        function signup() {
+            var username = document.getElementById('signup-username').value;
+            var email = document.getElementById('signup-email').value;
+            var password = document.getElementById('signup-password').value;
+
+            if (username && email && password) {
+                localStorage.setItem('username', username);
+                localStorage.setItem('email', email);
+                localStorage.setItem('password', password);
+                alert('Signup successful! Redirecting to the chatbot...');
+                window.location.href = 'unibot.html'; // Redirect to unibot page
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function togglePassword(id) {
+            var passwordInput = document.getElementById(id);
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>

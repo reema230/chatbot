@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Chatbot</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+     }
+
+        .container {
+            text-align: center;
+        }
+
+        .container h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .enter-btn {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            background-color: white;
+            color: #66a6ff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            animation: pulse 2s infinite;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.1);
+            background-color: #4c84db;
+            color: white;
+        }
+
+        .enter-btn:active {
+            transform: scale(0.9);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome to Chatbot</h1>
+<div class="disclaimer">
+        <p>Disclaimer: This chatbot can provide you information regarding the BCA Course in JNRM college.</p>
+    </div>
+    <button class="enter-btn" onclick="window.location.href='index.html'">Enter</button>
+</div>
+
+</body>
+</html>

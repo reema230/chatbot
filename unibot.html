@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        #chatbox { width: 350px; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+        #messages { flex: 1; padding: 20px; overflow-y: auto; }
+        #input-container { display: flex; border-top: 1px solid #ddd; }
+        #input { flex: 1; padding: 15px; border: none; border-radius: 0; }
+        button { padding: 15px; border: none; background-color: #007bff; color: white; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .message { margin-bottom: 15px; padding: 10px; border-radius: 5px; max-width: 80%; }
+        .user { background-color: #007bff; color: white; align-self: flex-end; }
+        .bot { background-color: #e1e1e1; color: black; align-self: flex-start; }
+        .typing-indicator { font-style: italic; color: grey; }
+    </style>
+</head>
+<body>
+    <div id="chatbox">
+        <div id="messages"></div>
+        <div id="input-container">
+            <input type="text" id="input" placeholder="Type a message..." onkeydown="if(event.key === 'Enter'){sendMessage();}">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            var input = document.getElementById('input');
+            var messages = document.getElementById('messages');
+
+            if (!input.value.trim()) {
+                alert('Please enter a message.');
+                return;
+            }
+
+            var userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.innerHTML = input.value;
+            messages.appendChild(userMessage);
+
+            showTypingIndicator(messages);
+
+            setTimeout(function() {
+                var botMessage = document.createElement('div');
+                botMessage.className = 'message bot';
+                botMessage.innerHTML = generateResponse(input.value);
+                messages.appendChild(botMessage);
+
+                hideTypingIndicator(messages);
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000); // Simulate a delay
+        }
+
+        function showTypingIndicator(messages) {
+            var typingIndicator = document.createElement('div');
+            typingIndicator.className = 'message typing-indicator';
+            typingIndicator.innerHTML = 'Chatbot is typing...';
+            typingIndicator.id = 'typing-indicator';
+            messages.appendChild(typingIndicator);
+        }
+
+        function hideTypingIndicator(messages) {
+            var typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                messages.removeChild(typingIndicator);
+            }
+        }
+
+        function generateResponse(userInput) {
+            var responses = {
+                "hello": "Hi there! How can I assist you today?",
+                "how are you?": "I'm just code, so I don't have feelings, but I'm here to help! I can inform you about JNRM college",
+                "hi": "Hi there! How can I assist you today?",
+                "hii": "Hi there! How can I assist you today?",
+                "hey": "Hi there! How can I assist you today?",
+                "who are you": "I am a chatbot",
+                "What is bca fullform?": "Bachelors of Computer Application",
+                "Bca stands for?": "Bachelors of Computer Application",
+                "what is bca course?": "BCA stands for Bachelor of Computer Applications and is a third-year undergraduate degree program that teaches students how to develop software applications. "
+                "what's your name?": "I'm your friendly chatbot. What can I do for you?"
+            };
+            return responses[userInput.toLowerCase()] || "Sorry, I didn't understand that. Can you try rephrasing?";
+        }
+    </script>
+</body>
+</html>
